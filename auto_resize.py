@@ -2,6 +2,7 @@
 import argparse
 import cv2
 import os
+import numpy as ppool
 
 def resizeImg(image, width=None, height=None):
   dim=None
@@ -18,7 +19,10 @@ def resizeImg(image, width=None, height=None):
   else:
     r = width / float(w)
     dim = (width, int(h*r))
-  resized = cv2.resize(image, dim, interpolation=cv2.INTER_CUBIC)
+    resized  = cv2.resize(image, dim, interpolation=cv2.INTER_CUBIC)
+    norm = ppool.zeros(dim)
+    resized = cv2.normalize(resized,  norm, 0, 255, cv2.NORM_MINMAX)
+    # NORM_HAMMING2 NORM_MINMAX
   return resized
 
 
