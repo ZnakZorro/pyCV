@@ -44,12 +44,16 @@ def main():
   
   folder           = imgDir+DS+"in"+DS
   newResizedFolder = imgDir+DS+"out"+DS
+  if not os.path.exists(folder):
+    os.makedirs(folder)
+  if not os.path.exists(newResizedFolder):
+    os.makedirs(newResizedFolder)
   for filename in os.listdir(folder):
     img = cv2.imread(os.path.join(folder, filename))
     if img is not None:
       x = xx or 2048
       newImage = resizeImg(img,x)
-      zoomImage = resizeImg(img,300)
+      zoomImage = resizeImg(img,600)
       newImgPath = newResizedFolder + filename.rsplit(".", -1)[0]+"_"+str(x)+".jpg"
       print(filename,newImage.shape,newImgPath)	
       cv2.imwrite(newImgPath, newImage)
