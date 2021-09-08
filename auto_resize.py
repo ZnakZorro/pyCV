@@ -30,7 +30,7 @@ def main():
   DS = os.path.sep
   imgDir = os.getcwd()
   parser = argparse.ArgumentParser(description='...')
-  parser.add_argument('--x', default=0, type=int, help="Width")
+  parser.add_argument('--x', default=2048, type=int, help="Width")
   parser.add_argument('--y', default=0, type=int, help="Height (0 = automatic)")
   parser.add_argument('--normalize', default=0, type=int, help="Normalize (0 = automatic)")
   parser.add_argument('img_path', nargs='?', default="in/1.jpg")
@@ -46,8 +46,9 @@ def main():
   #dir_path = os.path.dirname(os.path.realpath(__file__))
   print("imgDir=",imgDir)
   
-  folder           = imgDir+DS+"in"+DS
-  newResizedFolder = imgDir+DS+"out"+DS
+  #folder           = imgDir+DS+"in"+DS
+  folder           = imgDir+DS
+  newResizedFolder = imgDir+DS+"new_"+str(xx)+DS
   if not os.path.exists(folder):
     os.makedirs(folder)
   if not os.path.exists(newResizedFolder):
